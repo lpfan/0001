@@ -1,9 +1,9 @@
 /**
  * Created by vova on 29.09.2015.
  */
-var customers = new Mongo.Collection("customers"),
-    problems = [];
 Session.set("prob", "");
+var problems = [];
+console.log(problems);
 Template.inventory.events({
 
     "click #cancel": function(){
@@ -29,6 +29,8 @@ Template.inventory.events({
             Session.set("prob", problem);
         }
         $("#elseInput").val("");
+        problems.push(problem);
+
     },
 
     "click #add":function(){
@@ -47,14 +49,19 @@ Template.inventory.events({
         problems.forEach(function(trouble){
             troubles[trouble] = false;
         });
-        customers.insert({
+        var newCustomer = {
             bike: bike,
             name: name,
             phone: phone,
             deadline: deadline,
             price: price,
-            troubles: troubles
-        });
+            troubles: troubles,
+            status: "pending"
+        };
+
+
+        Orders.insert(newCustomer);
+        console.log(newCustomer);
         problems.splice(0,problems.length);
         location.assign("http://localhost:3000/index.html");
         location.reload(true);
@@ -63,13 +70,14 @@ Template.inventory.events({
     "mousedown p": function(event){
         "use strict";
         var edit = $(event.target).text(), k;
-
+        $(event.target).remove();
         if (event.which === 1){
             var input = $("#elseInput");
             problems.splice(problems.indexOf(edit), 1);
-
+            console.log(problems);
             if (input.val().trim()){
                 var problem = input.val().trim();
+                problems.push(problem);
                 Session.set("prob", problem);
                 input.val(edit);
                 input.focus();
@@ -91,6 +99,7 @@ Template.inventory.events({
         }
         else{
             problems.splice(problems.indexOf(edit), 1);
+            console.log(problems);
 
             if (problems.length % 2 === 1){
                 k = "controlTroublesNumber1";
@@ -104,13 +113,3 @@ Template.inventory.events({
     }
 });
 
-Template.inventory.helpers({
-    problem: function(){
-        var a = Session.get("prob");
-
-        if ((a) && (a !== "controlTroublesNumber1") && (a !== "controlTroublesNumber2") && (problems.indexOf(a) === -1)){
-            problems.push(a);
-        }
-    return problems;
-    }
-});
