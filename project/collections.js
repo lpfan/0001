@@ -1,4 +1,3 @@
-var problems = [1];
 Orders = new Mongo.Collection("orders");
 
 var pendingStatus="pending",

@@ -10,7 +10,6 @@ Template.inventory.helpers({
         });
         if ((a) && (a !== "controlTroublesNumber1") && (a !== "controlTroublesNumber2") && (problems.indexOf(a) === -1)){
             problems.push(a);
-            console.log(problems);
         }
         return problems;
     }
