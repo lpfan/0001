@@ -75,6 +75,24 @@ Template.inventory.events({
                 type: String,
                 label: 'Status',
                 allowedValues: [pendingStatus, inprogressStatus, doneStatus]
+            },
+            price: {
+                type: String,
+                label: 'Price',
+                max: 20
+            },
+            deadline: {
+                type: String,
+                label: 'Deadline',
+                max: 20
+                },
+            name: {
+                type: String,
+                label: 'Name',
+                max: 20
+            },
+            troubles:{
+                type: Object
             }
         });
         Orders.insert(newCustomer);

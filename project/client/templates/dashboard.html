@@ -1,0 +1,33 @@
+<template name="dashboard">
+  <div class="row">
+    <div id="js-todo-column" class="col-xs-6 col-md-4 ">
+      <h4>ToDo</h4>
+          {{#each pendingOrders}}
+            {{>order}}
+          {{/each}}
+    </div>
+    <div id="js-inprogress-column" class="col-xs-6 col-md-4">
+        <h4>In Progress</h4>
+        {{#each inprogressOrders}}
+            {{>order}}
+        {{/each}}
+    </div>
+    <div id="js-done-column" class="col-xs-6 col-md-4">
+        <h4>Done</h4>
+        {{#each doneOrders}}
+            {{>order}}
+        {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="order">
+    <div class="js_order_box bg-success">
+
+        <strong>{{bike}}</strong>
+        <span>{{phone}}</span>
+        <span>Troubles</span>
+        <span>{{troubles}}</span>
+
+    </div>
+</template>

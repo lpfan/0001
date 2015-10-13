@@ -13,5 +13,9 @@ Router.map(function() {
     this.route('CustomerErrors', {
         path: '/CustomerErrors',
         template: 'CustomerErrors'
-    })
+    });
+    this.route('dashboard', {
+        path: '/dashboard',
+        template: 'dashboard'
+    });
 });
