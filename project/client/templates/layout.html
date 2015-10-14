@@ -1,2 +1,10 @@
-<template name="layout">  
+<template name="layout">
+    <div class="container">
+        <button class="oneButton" style="height: 100px; width: 100px">inventory</button>
+        <button class="secondButton" style="height: 100px; width: 100px">error</button>
+
+        <main>
+            {{> yield inventory}}
+        </main>
+    </div>
 </template>
