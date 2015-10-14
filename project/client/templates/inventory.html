@@ -1,0 +1,21 @@
+<template name="inventory">
+    <input type="text" id="bikeName" placeholder="Ровер"/>
+    <p>Проблема</p>
+        <button class="form"  type="button">Вилка</button>
+        <button class="form" type="button">Аморт</button>
+        <button class="form" type="button">Гальма</button>
+        <button class="form" type="button">Ланцюг</button>
+        <button class="form" type="button">Налаштування (ТО)</button>
+    {{#each problem}}
+        <p>{{this}}</p><br>
+    {{/each}}
+        <input type="text" id="elseInput" placeholder="Інше..."/>
+        <button id="else" type="button">OK</button>
+    <input type="text" id="name" placeholder="Ім'я"/>
+    <input type="text" id="phone" placeholder="Телефон"/>
+    <input type="text" id="deadline" placeholder="Термін (deadline)"/>
+    <input type="text" id="price" placeholder="Попередня ціна"/>
+    <button id="cancel">Скасувати</button>
+    <button id="add">Додати</button>
+</template>
+
