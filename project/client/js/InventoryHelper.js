@@ -8,8 +8,11 @@ Template.inventory.helpers({
         $("p").each(function(){
             problems.push($(this).text());
         });
-        if ((a) && (a !== "controlTroublesNumber1") && (a !== "controlTroublesNumber2") && (problems.indexOf(a) === -1)){
-            problems.push(a);
+        if ((a !== "controlTroublesNumber1") && (a !== "controlTroublesNumber2")){
+            if ((a) && (problems.indexOf(a) === -1)){
+                problems.push(a);
+        }
+
         }
         return problems;
     }

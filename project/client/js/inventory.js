@@ -38,10 +38,7 @@ Template.inventory.events({
             phone =($("#phone").val().trim()),
             deadline = $("#deadline").val().trim(),
             price = $("#price").val().trim(),
-            troubles = {},
-            pendingStatus="pending",
-            inprogressStatus="inprogress",
-            doneStatus="done";
+            troubles = {};
         $(".form").each(function(){
             if ($(this).css("background-color") === "rgb(255, 0, 0)"){
                 troubles[$(this).text()] = false;
@@ -59,33 +56,17 @@ Template.inventory.events({
             troubles: troubles,
             status: "pending"
         };
-        var OrderSchema = new SimpleSchema({
-            bike: {
-                type: String,
-                label: 'Bike',
-                max: 500
-            },
-            phone : {
-                type: String,
-                label: 'Phone',
-                max: 20
-            },
-
-            status : {
-                type: String,
-                label: 'Status',
-                allowedValues: [pendingStatus, inprogressStatus, doneStatus]
+        Orders.insert(newCustomer, function(error, result) {
+            if (error){
+                Session.set("prob", "");
+                Router.go("/CustomerErrors");
+            }else{
+                location.assign("http://localhost:3000/inventory.html");
+                location.reload(true);
             }
         });
-        Orders.insert(newCustomer);
         problems.splice(0,problems.length);
-        if (!(Match.test(newCustomer, OrderSchema))){
-            Session.set("prob", "");
-        Router.go("/CustomerErrors");
-        }else{
-            location.assign("http://localhost:3000/inventory.html");
-            location.reload(true);
-        }
+
     },
 
     "mousedown p": function(event){
