@@ -1,2 +1,11 @@
-<template name="layout">  
+<template name="layout">
+  <header>
+    {{>mainmenu}}
+  </header>
+
+  <div class="container">
+    <main>
+      {{> yield}}
+    </main>
+  </div>
 </template>
