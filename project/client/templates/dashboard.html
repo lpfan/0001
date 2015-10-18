@@ -23,11 +23,21 @@
 
 <template name="order">
     <div class="js_order_box bg-success">
-
+        <button class="edit">Edit</button>
         <strong>{{bike}}</strong>
         <span>{{phone}}</span>
         <span>Troubles</span>
-        <span>{{troubles}}</span>
+        <div class="troubles">
 
+        {{#each troublesUnfinished}}
+            <p style="color: red">{{this}}</p>
+            <button class="destroy {{this}}" style="color: red; height: 15px; width: 15px">X</button>
+            {{/each}}
+        {{#each troublesFinished}}
+            <p style="color: black">{{this}}</p>
+            <button class="destroy {{this}}" style="color: red; height: 15px; width: 15px">X</button>
+        {{/each}}
+
+        </div>
     </div>
 </template>

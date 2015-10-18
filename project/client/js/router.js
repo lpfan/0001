@@ -18,4 +18,8 @@ Router.map(function() {
         path: '/dashboard',
         template: 'dashboard'
     });
+    this.route('edit', {
+        path: '/edit',
+        template: 'edit'
+    });
 });

@@ -54,8 +54,11 @@ var OrderSchema = new SimpleSchema({
         label: 'Name',
         max: 20
     },
-    troubles:{
-        type: Object
+    troublesFinished:{
+        type: [String]
+    },
+    troublesUnfinished:{
+        type: [String]
     }
 });
 Orders.attachSchema(OrderSchema);

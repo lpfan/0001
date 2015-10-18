@@ -28,7 +28,6 @@ Template.inventory.events({
         }
         $("#elseInput").val("");
         problems.push(problem);
-
     },
 
     "click #add":function(){
@@ -38,17 +37,15 @@ Template.inventory.events({
             phone =($("#phone").val().trim()),
             deadline = $("#deadline").val().trim(),
             price = $("#price").val().trim(),
-            troubles = {},
-            pendingStatus="pending",
-            inprogressStatus="inprogress",
-            doneStatus="done";
+            troublesUnfinished = [],
+            troublesFinished =[];
         $(".form").each(function(){
             if ($(this).css("background-color") === "rgb(255, 0, 0)"){
-                troubles[$(this).text()] = false;
+                troublesUnfinished.push($(this).text());
             }
         });
-        problems.forEach(function(trouble){
-            troubles[trouble] = false;
+        problems.forEach(function(problem){
+            troublesUnfinished.push(problem);
         });
         var newCustomer = {
             bike: bike,
@@ -56,54 +53,20 @@ Template.inventory.events({
             phone: phone,
             deadline: deadline,
             price: price,
-            troubles: troubles,
+            troublesUnfinished: troublesUnfinished,
+            troublesFinished: troublesFinished,
             status: "pending"
         };
-        var OrderSchema = new SimpleSchema({
-            bike: {
-                type: String,
-                label: 'Bike',
-                max: 500
-            },
-            phone : {
-                type: String,
-                label: 'Phone',
-                max: 20
-            },
-
-            status : {
-                type: String,
-                label: 'Status',
-                allowedValues: [pendingStatus, inprogressStatus, doneStatus]
-            },
-            price: {
-                type: String,
-                label: 'Price',
-                max: 20
-            },
-            deadline: {
-                type: String,
-                label: 'Deadline',
-                max: 20
-                },
-            name: {
-                type: String,
-                label: 'Name',
-                max: 20
-            },
-            troubles:{
-                type: Object
+        Orders.insert(newCustomer, function(error, result) {
+            if (error){
+                Session.set("prob", "");
+                Router.go("/CustomerErrors");
+            }else{
+                location.assign("http://localhost:3000/inventory.html");
+                location.reload(true);
             }
         });
-        Orders.insert(newCustomer);
         problems.splice(0,problems.length);
-        if (!(Match.test(newCustomer, OrderSchema))){
-            Session.set("prob", "");
-        Router.go("/CustomerErrors");
-        }else{
-            location.assign("http://localhost:3000/inventory.html");
-            location.reload(true);
-        }
     },
 
     "mousedown p": function(event){
@@ -122,7 +85,6 @@ Template.inventory.events({
             }else{
                 input.val(edit);
                 input.focus();
-
                 if (problems.length % 2 === 1){
                     k = "controlTroublesNumber1";
                 }else{

@@ -1,0 +1,29 @@
+<template name="edit">
+    {{#each editCollection}}
+        <span>Bike</span>
+        <input type="text" id="bikeName" value={{bike}}><br>
+        <span>Name</span>
+        <input type="text" id="name" value={{name}}><br>
+        <span>Phone</span>
+        <input type="text" id="phone" value={{phone}}><br>
+        <span>Deadline</span>
+        <input type="text" id="deadline" value={{deadline}}><br>
+        <span>Price</span>
+        <input type="text" id="price" value={{price}}><br>
+
+        <h3>Проблема</h3>
+        <div class="troubles">
+            {{#each troublesUnfinished}}
+                <p style="color: red" class="unfinished">{{this}}</p>
+            {{/each}}
+            {{#each troublesFinished}}
+                <p style="color: black" class="finished">{{this}}</p>
+            {{/each}}
+        </div>
+
+        <input type="text" id="elseInput" placeholder="New trouble..."/>
+        <button id="else" type="button">OK</button>
+        <button id="delete">Delete</button>
+        <button id="add">Add</button>
+    {{/each}}
+</template>
