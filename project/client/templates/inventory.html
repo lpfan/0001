@@ -1,21 +1,64 @@
 <template name="inventory">
-    <input type="text" id="bikeName" placeholder="Ровер"/>
-    <h3>Проблема</h3>
-        <button class="form"  type="button">Вилка</button>
-        <button class="form" type="button">Аморт</button>
-        <button class="form" type="button">Гальма</button>
-        <button class="form" type="button">Ланцюг</button>
-        <button class="form" type="button">Налаштування (ТО)</button>
-    {{#each problem}}
-        <p class="troublesList">{{this}}</p><br>
-    {{/each}}
-        <input type="text" id="elseInput" placeholder="Інше..."/>
-        <button id="else" type="button">OK</button>
-    <input type="text" id="name" placeholder="Ім'я"/>
-    <input type="text" id="phone" placeholder="Телефон"/>
-    <input type="text" id="deadline" placeholder="Термін (deadline)"/>
-    <input type="text" id="price" placeholder="Попередня ціна"/>
-    <button id="cancel">Скасувати</button>
-    <button id="add">Додати</button>
+    <form class="form-inline" role="form">
+        <div class="col-xs-3">
+            <div class="form-group">
+                <p>
+                    <input type="text" id="bikeName" placeholder="Ровер"
+                           class="form-control"/>
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    <input type="text" id="name" placeholder="Ім'я" class="form-control"/>
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    <input type="text" id="phone" placeholder="Телефон"
+                           class="form-control"/>
+
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    <input type="text" id="deadline" placeholder="Термін (deadline)"
+                           class="form-control"/>
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    <input type="text" id="price" placeholder="Попередня ціна"
+                           class="form-control"/>
+                </p>
+            </div>
+
+            <button type="button" class="btn btn-danger btn-lg" id="cancel">Скасувати
+            </button>
+            <button type="button" id="add" class="btn btn-success btn-lg">Додати</button>
+        </div>
+    </form>
+    <div class="col-xs-3">
+        <h3>Проблема</h3>
+
+        <p>
+            <button class="form btn btn-default" type="button">Вилка</button>
+            <button class="form btn btn-default" type="button">Аморт</button>
+            <button class="form btn btn-default" type="button">Гальма</button>
+        </p>
+        <p>
+            <button class="form btn btn-default" type="button">Ланцюг</button>
+            <button class="form btn btn-default" type="button">Налаштування (ТО)</button>
+        </p>
+
+        {{#each problem}}
+            <li class="troublesList">{{this}}</li>
+            <br>
+        {{/each}}
+
+        <textarea id="elseInput" placeholder="Інше..." class="form-control"
+                  rows="3"></textarea>
+        <button id="else" type="button" class="btn btn-info">OK</button>
+    </div>
+
 </template>
 

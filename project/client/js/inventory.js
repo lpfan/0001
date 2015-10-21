@@ -69,7 +69,7 @@ Template.inventory.events({
         problems.splice(0,problems.length);
     },
 
-    "mousedown p": function(event){
+    "mousedown li": function(event){
         "use strict";
         var edit = $(event.target).text(), k;
         $(event.target).remove();

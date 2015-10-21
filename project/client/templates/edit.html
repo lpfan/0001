@@ -1,29 +1,63 @@
 <template name="edit">
     {{#each editCollection}}
-        <span>Bike</span>
-        <input type="text" id="bikeName" value={{bike}}><br>
-        <span>Name</span>
-        <input type="text" id="name" value={{name}}><br>
-        <span>Phone</span>
-        <input type="text" id="phone" value={{phone}}><br>
-        <span>Deadline</span>
-        <input type="text" id="deadline" value={{deadline}}><br>
-        <span>Price</span>
-        <input type="text" id="price" value={{price}}><br>
+        <form class="form-inline" role="form">
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Bike</p>
+                    <input type="text" id="bikeName" class="form-control" value={{bike}}>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Name</p>
+                    <input type="text" id="name" class="form-control" value={{name}}>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Phone</p>
+                    <input type="text" id="phone" class="form-control"
+                           value={{phone}}> </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Deadline</p>
+                    <input type="text" id="deadline" class="form-control"
+                           value={{deadline}}> </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Price</p>
+                    <input type="text" id="price" class="form-control"
+                           value={{price}}> </p>
+                </div>
+                <p class="text-center">
+                    <button id="delete" class="btn btn-danger btn-lg">Delete</button>
+                    <button id="add" class="btn btn-success btn-lg">Add</button>
+                </p>
+            </div>
+        </form>
 
-        <h3>Проблема</h3>
-        <div class="troubles">
-            {{#each troublesUnfinished}}
-                <p style="color: red" class="unfinished">{{this}}</p>
-            {{/each}}
-            {{#each troublesFinished}}
-                <p style="color: black" class="finished">{{this}}</p>
-            {{/each}}
+        <div class="col-xs-3">
+            <h3>Проблема</h3>
+            <div class="troubles">
+                {{#each troublesUnfinished}}
+                    <li style="color: red"
+                        class="unfinished orderedTroubles">{{this}}</li>
+                    <br>
+                {{/each}}
+                {{#each troublesFinished}}
+                    <li style="color: black"
+                        class="finished orderedTroubles">{{this}}</li>
+                    <br>
+                {{/each}}
+            </div>
+
+            <textarea class="form-control" rows="3" id="elseInput"
+                      placeholder="New trouble..."></textarea>
+            <button id="else" type="button" class="btn btn-info">OK</button>
         </div>
-
-        <input type="text" id="elseInput" placeholder="New trouble..."/>
-        <button id="else" type="button">OK</button>
-        <button id="delete">Delete</button>
-        <button id="add">Add</button>
     {{/each}}
+
 </template>

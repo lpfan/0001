@@ -1,43 +1,58 @@
 <template name="dashboard">
-  <div class="row">
-    <div id="js-todo-column" class="col-xs-6 col-md-4 ">
-      <h4>ToDo</h4>
-          {{#each pendingOrders}}
-            {{>order}}
-          {{/each}}
+    <div class="row">
+        <div id="js-todo-column" class="col-xs-6 col-md-4 ">
+            <h4>ToDo</h4>
+            {{#each pendingOrders}}
+                {{>order}}
+            {{/each}}
+        </div>
+        <div id="js-inprogress-column" class="col-xs-6 col-md-4">
+            <h4>In Progress</h4>
+            {{#each inprogressOrders}}
+                {{>order}}
+            {{/each}}
+        </div>
+        <div id="js-done-column" class="col-xs-6 col-md-4">
+            <h4>Done</h4>
+            {{#each doneOrders}}
+                {{>order}}
+            {{/each}}
+        </div>
     </div>
-    <div id="js-inprogress-column" class="col-xs-6 col-md-4">
-        <h4>In Progress</h4>
-        {{#each inprogressOrders}}
-            {{>order}}
-        {{/each}}
-    </div>
-    <div id="js-done-column" class="col-xs-6 col-md-4">
-        <h4>Done</h4>
-        {{#each doneOrders}}
-            {{>order}}
-        {{/each}}
-    </div>
-  </div>
 </template>
 
 <template name="order">
-    <div class="js_order_box bg-success">
-        <button class="edit">Edit</button>
-        <strong>{{bike}}</strong>
-        <span>{{phone}}</span>
-        <span>Troubles</span>
-        <div class="troubles">
+    <dl>
+        <div class="js_order_box bg-success">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <dt>
+                        <strong>{{bike}}</strong>
+                        <span>{{phone}}</span>
+                        <button class="edit btn btn-default btn btn-primary btn-sm">Edit
+                        </button>
+                    </dt>
+                </div>
+                <div class="troubles">
+                    <div class="panel-body">
 
-        {{#each troublesUnfinished}}
-            <p style="color: red">{{this}}</p>
-            <button class="destroy {{this}}" style="color: red; height: 15px; width: 15px">X</button>
-            {{/each}}
-        {{#each troublesFinished}}
-            <p style="color: black">{{this}}</p>
-            <button class="destroy {{this}}" style="color: red; height: 15px; width: 15px">X</button>
-        {{/each}}
+                        {{#each troublesUnfinished}}
+                            <dd>
+                                <p class="orderedTroubles" style="color: red">{{this}}</p>
 
+                            </dd>
+                        {{/each}}
+                        {{#each troublesFinished}}
+                            <blockquote>
+                                <dd>
+                                    <span class="orderedTroubles"
+                                          style="color: black">{{this}}</span>
+                                </dd>
+                            </blockquote>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </dl>
 </template>
