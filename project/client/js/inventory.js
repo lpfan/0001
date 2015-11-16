@@ -32,7 +32,7 @@ Template.inventory.events({
 
     "click #add":function(){
         "use strict";
-        var bike = $("#bikeName").val().trim(),
+        var bike = $("#bike").val().trim(),
             name = $("#name").val().trim(),
             phone =($("#phone").val().trim()),
             deadline = $("#deadline").val().trim(),
@@ -57,16 +57,21 @@ Template.inventory.events({
             troublesFinished: troublesFinished,
             status: "pending"
         };
-        Orders.insert(newCustomer, function(error, result) {
+        Orders.insert(newCustomer, function(error) {
             if (error){
+                var context = Orders.simpleSchema().namedContext(this.contextName);
                 Session.set("prob", "");
-                Router.go("/CustomerErrors");
+                var k =context.invalidKeys().map(function(data) {
+                    var id = (data.name);
+                    $("#" + id).css("border", "solid red");
+                });
             }else{
+                problems.splice(0,problems.length);
                 location.assign("http://localhost:3000/inventory.html");
                 location.reload(true);
             }
         });
-        problems.splice(0,problems.length);
+
     },
 
     "mousedown li": function(event){
@@ -100,6 +105,12 @@ Template.inventory.events({
                 k = "controlTroublesNumber2";
             }
             Session.set("prob", k);
+        }
+    },
+    "focus input": function(event){
+        "use strict";
+        if ($(event.target).css("border-color") === "rgb(255, 0, 0)"){
+            ($(event.target).css("border", "rgb(204, 204, 204)"))
         }
     }
 });

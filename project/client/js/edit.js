@@ -45,16 +45,17 @@ Template.edit.events({
         }
         $("#elseInput").val("");
     },
-    "click #delete":function(){
+    "click #delete":function(e){
         "use strict";
         var conf = confirm("Do you really want to remove this inventory?");
         if (conf){
             var objectID = Session.get("edit");
             Orders.remove(objectID);
             Router.go("/dashboard");
+            e.preventDefault()
         }
     },
-    "click #add": function(){
+    "click #add": function(e){
         "use strict";
         var objectID = Session.get("edit"),
             collection = (Orders.find(objectID)).fetch(),
@@ -74,6 +75,8 @@ Template.edit.events({
         if (troublesUnfinished.length === 0) {
             status= "done";
         }
+        console.log(objectID);
+
         var newCustomer = {
                 bike: bike,
                 name: name,
@@ -85,14 +88,19 @@ Template.edit.events({
                 status: status
             };
 
-        Orders.insert(newCustomer, function(error, result) {
-            if (error){
-                Router.go("/CustomerErrors");
-            }else{
-                Orders.remove(objectID);
-                Router.go("/dashboard");
+        var newId = Orders.insert(newCustomer, function(error){
+              if (error){
+                  Router.go("/CustomerErrors");
+
             }
         });
+        if (newId){
+            Orders.remove(objectID);
+            Session.set("edit", "");
+            Router.go("/dashboard");
+            console.log("2");
+            e.preventDefault();
+        }
     }
 })
 
