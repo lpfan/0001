@@ -61,7 +61,7 @@ Template.inventory.events({
             if (error){
                 var context = Orders.simpleSchema().namedContext(this.contextName);
                 Session.set("prob", "");
-                var k =context.invalidKeys().map(function(data) {
+                context.invalidKeys().map(function(data) {
                     var id = (data.name);
                     $("#" + id).css("border", "solid red");
                 });
