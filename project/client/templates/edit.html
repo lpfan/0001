@@ -5,7 +5,7 @@
                 <div class="form-group">
                     <p>
                     <p class="text-center">Bike</p>
-                    <input type="text" id="bikeName" class="form-control" value={{bike}}>
+                    <input type="text" id="bike" class="form-control" value={{bike}}>
                     </p>
                 </div>
                 <div class="form-group">
@@ -32,10 +32,7 @@
                     <input type="text" id="price" class="form-control"
                            value={{price}}> </p>
                 </div>
-                <p class="text-center">
-                    <button id="delete" class="btn btn-danger btn-lg">Delete</button>
-                    <button id="add" class="btn btn-success btn-lg">Add</button>
-                </p>
+
             </div>
         </form>
 
@@ -59,5 +56,9 @@
             <button id="else" type="button" class="btn btn-info">OK</button>
         </div>
     {{/each}}
+    <p class="text-center">
+        <button id="delete" class="btn btn-danger btn-lg">Delete</button>
+        <button id="add" class="btn btn-success btn-lg">Add</button>
 
+    </p>
 </template>

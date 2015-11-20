@@ -55,52 +55,51 @@ Template.edit.events({
             e.preventDefault()
         }
     },
-    "click #add": function(e){
-        "use strict";
-        var objectID = Session.get("edit"),
-            collection = (Orders.find(objectID)).fetch(),
-            bike = $("#bikeName").val().trim(),
-            name = $("#name").val().trim(),
-            phone =($("#phone").val().trim()),
-            deadline = $("#deadline").val().trim(),
-            price = $("#price").val().trim(),
-            troublesUnfinished = collection[0].troublesUnfinished,
-            troublesFinished = collection[0].troublesFinished,
-            status;
-        if (troublesFinished.length > 0) {
-            status= "inprogress";
-        } else {
-            status= "pending";
-        }
-        if (troublesUnfinished.length === 0) {
-            status= "done";
-        }
-        console.log(objectID);
-
-        var newCustomer = {
-                bike: bike,
-                name: name,
-                phone: phone,
-                deadline: deadline,
-                price: price,
-                troublesUnfinished: troublesUnfinished,
-                troublesFinished: troublesFinished,
-                status: status
-            };
-
-        var newId = Orders.insert(newCustomer, function(error){
-              if (error){
-                  Router.go("/CustomerErrors");
-
-            }
-        });
-        if (newId){
-            Orders.remove(objectID);
-            Session.set("edit", "");
-            Router.go("/dashboard");
-            console.log("2");
-            e.preventDefault();
-        }
+    "click #add": function (event) {
+    "use strict";
+    var objectID = Session.get("edit"),
+        collection = (Orders.find(objectID)).fetch(),
+        bike = $("#bike").val().trim(),
+        name = $("#name").val().trim(),
+        phone = ($("#phone").val().trim()),
+        deadline = $("#deadline").val().trim(),
+        price = $("#price").val().trim(),
+        troublesUnfinished = collection[0].troublesUnfinished,
+        troublesFinished = collection[0].troublesFinished,
+        status;
+    if (troublesFinished.length > 0) {
+        status = "inprogress";
+    } else {
+        status = "pending";
     }
-})
+    if (troublesUnfinished.length === 0) {
+        status = "done";
+    }
+    var newCustomer = {
+        bike: bike,
+        name: name,
+        phone: phone,
+        deadline: deadline,
+        price: price,
+        troublesUnfinished: troublesUnfinished,
+        troublesFinished: troublesFinished,
+        status: status
+    };
+
+    Orders.insert(newCustomer, function (error) {
+            if (error) {
+                var context = Orders.simpleSchema().namedContext(this.contextName);
+                context.invalidKeys().map(function(data) {
+                var id = (data.name);console.log(id);
+            $("#" + id).css("border", "solid red");
+                });
+
+            }else{
+                Orders.remove(objectID);
+                Router.go("/dashboard");
+            }
+        }
+    );}
+
+});
 
