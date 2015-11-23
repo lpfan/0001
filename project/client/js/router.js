@@ -22,4 +22,8 @@ Router.map(function() {
         path: '/edit',
         template: 'edit'
     });
+    this.route('dashbordClient',{
+        path:'/dashbordClient',
+        template:'dashbordClient'
+    });
 });

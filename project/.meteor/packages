@@ -22,3 +22,5 @@ aldeed:collection2
 iron:router
 check
 twbs:bootstrap
+accounts-ui
+accounts-password
