@@ -1,4 +1,11 @@
 <template name="dashboard">
+    {{#if currentUser}}
+
+    {{else}}
+    <div class="btn-block">
+        {{>loginButtons}}
+    </div>
+    {{/if}}
     <div class="row">
         <div id="js-todo-column" class="col-xs-6 col-md-4 ">
             <h4>ToDo</h4>
@@ -29,11 +36,13 @@
                     <dt>
                         <strong>{{bike}}</strong>
                         <span>{{phone}}</span>
-                        <button class="edit btn btn-default btn btn-primary btn-sm">Edit
+{{#if currentUser}}
+        <button class="edit btn btn-default btn btn-primary btn-sm">Edit
                         </button>
+{{/if}}
                     </dt>
                 </div>
-                <div class="troubles">
+{{#if currentUser}}<div class="troubles">
                     <div class="panel-body">
 
                         {{#each troublesUnfinished}}
@@ -52,6 +61,25 @@
                         {{/each}}
                     </div>
                 </div>
+{{else}}
+    <div class="panel-body">
+
+        {{#each troublesUnfinished}}
+            <dd>
+                <p style="color: red">{{this}}</p>
+
+            </dd>
+        {{/each}}
+        {{#each troublesFinished}}
+            <blockquote>
+                <dd>
+                    <span style="color: black">{{this}}</span>
+                </dd>
+            </blockquote>
+        {{/each}}
+    </div>
+
+{{/if}}
             </div>
         </div>
     </dl>

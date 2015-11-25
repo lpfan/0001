@@ -14,3 +14,4 @@ if(!Meteor.users.find().fetch()) {
     }})
 
 }
+
