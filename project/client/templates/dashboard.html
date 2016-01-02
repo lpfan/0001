@@ -2,9 +2,15 @@
     {{#if currentUser}}
 
     {{else}}
-    <div class="btn-block">
-        {{>loginButtons}}
+        <div id="logBlock" style="width: 50%; height: 50px">
+
+    <button type="button" id="loginButton" class="btn btn-success btn-lg" style="float: right">login</button>
+        </div>
+    <div id="clicked" style="display: none">
+        {{>login}}
     </div>
+
+
     {{/if}}
     <div class="row">
         <div id="js-todo-column" class="col-xs-6 col-md-4 ">
@@ -40,6 +46,11 @@
         <button class="edit btn btn-default btn btn-primary btn-sm">Edit
                         </button>
 {{/if}}
+                        {{#if troublesUnfinished}}
+                            {{else}}
+
+                            <button id="archive" class="btn btn-default btn btn-primary btn-sm">Archive</button>
+                            {{/if}}
                     </dt>
                 </div>
 {{#if currentUser}}<div class="troubles">

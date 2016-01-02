@@ -22,8 +22,16 @@ Router.map(function() {
         path: '/edit',
         template: 'edit'
     });
-    this.route('dashbordClient',{
-        path:'/dashbordClient',
-        template:'dashbordClient'
+    this.route('changePass', {
+        path:'/changePass',
+        template: 'changePass'
+    });
+    this.route('archive', {
+        path:'/archive',
+        template: 'archive'
+    });
+    this.route('more', {
+        path:'/more',
+        template: 'more'
     });
 });

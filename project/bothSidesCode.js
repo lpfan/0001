@@ -15,3 +15,11 @@ if(!Meteor.users.find().fetch()) {
 
 }
 
+Meteor.methods({
+    constants: function () {
+        return {
+            sessionName: "prob"
+        };
+    }
+});
+

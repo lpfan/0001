@@ -1,0 +1,57 @@
+<template name="more">
+    {{#each moreCollection}}
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Bike</p>
+                    <p class="text-center" style="border-bottom: 3px solid brown; color: blue">{{bike}}</p>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Name</p>
+                    <p class="text-center" style="border-bottom: 3px solid brown; color: blue">{{name}}</p>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Phone</p>
+                    <p class="text-center" style="border-bottom: 3px solid brown; color: blue">{{phone}}</p>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Deadline</p>
+                    <p class="text-center" style="border-bottom: 3px solid brown; color: blue">{{deadline}}</p>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                    <p class="text-center">Price</p>
+                    <p class="text-center" style="border-bottom: 3px solid brown; color: blue">{{price}}</p>
+                    </p>
+                </div>
+
+            </div>
+
+        <div class="col-xs-3">
+            <h3>Repaired</h3>
+            <div class="troubles">
+
+                {{#each troublesFinished}}
+                    <li style="color: black"
+                        class="finished orderedTroubles">{{this}}</li>
+                    <br>
+                {{/each}}
+            </div>
+            <h3 class="text-center"><mark>Comment</mark></h3>
+            <textarea  class="form-control" rows="3" id="comments"
+                      value={{comment}}></textarea>
+            <button id="addToArchive" type="button" class="btn btn-info">Archive</button>
+        </div>
+    {{/each}}
+    <p class="text-center">
+        <button id="delete" class="btn btn-danger btn-lg">Delete</button>
+        <button id="extract" class="btn btn-success btn-lg">Extract</button>
+    </p>
+</template>

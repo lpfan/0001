@@ -4,14 +4,16 @@
 Template.edit.events({
     "mousedown .troubles": function(event) {
         "use strict";
+
         var objectID = Session.get("edit"),
             text = $(event.target).html(),
             collection = (Orders.find(objectID)).fetch(),
             newUnfinished = collection[0].troublesUnfinished,
-            newFinished = collection[0].troublesFinished;
+            newFinished = collection[0].troublesFinished,
+            clickedItemColor = "rgb(255, 0, 0)";
         if (event.which === 1) {
             if ($(event.target).hasClass("orderedTroubles")){
-                if ($(event.target).css("color") === "rgb(255, 0, 0)") {
+                if ($(event.target).css("color") === clickedItemColor) {
                     newUnfinished.splice(newUnfinished.indexOf(text), 1);
                     newFinished.push(text);
                     Orders.update(objectID, {$set: {troublesUnfinished: newUnfinished, troublesFinished: newFinished }});
@@ -90,7 +92,7 @@ Template.edit.events({
             if (error) {
                 var context = Orders.simpleSchema().namedContext(this.contextName);
                 context.invalidKeys().map(function(data) {
-                var id = (data.name);console.log(id);
+                var id = (data.name);
             $("#" + id).css("border", "solid red");
                 });
 

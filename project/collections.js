@@ -1,4 +1,5 @@
 Orders = new Mongo.Collection("orders");
+OrdersArchive = new Mongo.Collection("ordersArchive");
 
 var pendingStatus="pending",
     inprogressStatus="inprogress",

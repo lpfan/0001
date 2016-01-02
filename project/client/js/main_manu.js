@@ -5,7 +5,7 @@ Template.mainmenu.events({
 
     "click #logOut": function(){
         "use strict";
-       Meteor.call("logout", Meteor.userId());
+        Meteor.logout();
         Router.go("/dashboard")
     }
 })

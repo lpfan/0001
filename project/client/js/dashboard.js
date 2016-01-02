@@ -4,9 +4,7 @@
 Template.order.events({
     "mousedown .troubles": function(event){
         "use strict";
-        $('.orderedTroubles').click(function(){
-            console.log("12");
-        });
+
         var objectID = this._id,
             text = $(event.target).html(),
             collection = (Orders.find(objectID)).fetch(),
@@ -62,5 +60,36 @@ Template.order.events({
             Router.go("/edit");
             event.preventDefault();
         }
+    },
+    "click #archive": function(){
+        "use strict";
+        if (confirm("add this order to archive?")) {
+            var objectID = this._id,
+                comment = prompt("You want to add this order to archive. Please, add some comments:"),
+                collection = (Orders.find(objectID)).fetch()[0],
+                today = new Date(),
+                dd = today.getDate(),
+                mm = today.getMonth()+ 1,
+                yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            }
+
+            if(mm<10) {
+                mm='0'+mm
+            }
+
+            var date = dd+'/'+mm+'/'+yyyy;
+            collection.comment = comment;
+            collection.date = date;
+            OrdersArchive.insert(collection, function(error){
+                if(!error){
+                    Orders.remove(objectID);
+                }
+            });
+
+        }
+
     }
 })

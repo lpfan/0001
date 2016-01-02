@@ -1,0 +1,22 @@
+<template name="archive">
+{{#each archiveOrders}}
+    <dl>
+        <div class="js_order_box bg-success">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <dt>
+                        <span>{{name}}</span>
+                        <strong>{{bike}}</strong>
+                        <span>Added to archive: {{date}}</span>
+                        <button class="more btn btn-default btn btn-primary btn-sm">More
+                        </button>
+                    </dt>
+                </div>
+                <div class="panel-body">
+                    <span>{{comment}}</span>
+                    </div>
+            </div>
+        </div>
+    </dl>
+{{/each}}
+</template>
